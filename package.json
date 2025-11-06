@@ -1,0 +1,27 @@
+{
+  "name": "sc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "GPL",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node serve.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "esbuild": "^0.25.11",
+    "esbuild-plugin-tsc": "^0.5.0",
+    "eslint": "^9.38.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
+    "typescript-plugin-css-modules": "^5.2.0"
+  },
+  "dependencies": {
+    "@antv/g-svg": "^2.0.42",
+    "@antv/g-webgl": "^2.0.52",
+    "@antv/g6": "^5.0.50",
+    "jszip": "^3.10.1"
+  }
+}

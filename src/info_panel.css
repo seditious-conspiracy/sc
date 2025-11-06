@@ -1,0 +1,173 @@
+.sc-entity-info-panel {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 10px;
+    z-index: 1;
+    width: 24em;
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+    font: 10pt white;
+}
+
+.sc-entity-info-prop-list {
+    display: flex;
+    flex-direction: column;
+    width: 24em;
+}
+
+.sc-entity-info-panel input {
+    background: none;
+    border: none;
+    color: #f4c753;
+    font-family: sans-serif;
+}
+
+.sc-entity-info-panel input:focus {
+    border: none;
+    outline: none;
+}
+
+.sc-entity-info-panel textarea {
+    background: none;
+    border: none;
+    outline: none;
+    color: #f4c753;
+    font: 10pt sans-serif;
+}
+
+::selection {
+    background-color: white;
+    color: black;
+}
+
+.sc-entity-info-panel input:enabled {
+    text-decoration: 1.25pt underline dotted #f4c753;
+}
+
+.sc-entity-info-panel input {
+    width: 100%;
+}
+
+.sc-short-property {
+    width: 24em;
+    max-height: 3ex;
+    overflow: hidden;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    font-size: 10pt;
+}
+
+.sc-short-property-label {
+    font-style: italic;
+    color: white;
+    user-select: none;
+    padding-top: 3px;
+}
+
+.sc-short-property-value {
+    font-size: 10pt;
+}
+
+.sc-long-property {
+    width: 24em;
+    overflow: scroll;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.sc-long-property-label {
+    font-style: italic;
+    user-select: none;
+    color: white;
+    padding-top: 3px;
+}
+
+.sc-long-property-value {
+    color: white;
+    width: 85%;
+}
+
+.sc-entity-info-picture-container {
+    max-height: 24em;
+    min-height: 24em;
+    overflow: hidden;
+    display: inline-block;
+    align-content: center;
+}
+
+.sc-entity-info-picture {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    font-size: 172pt;
+    text-align: center;
+    color: white;
+}
+
+.sc-entity-info-name-input {
+    font: 12pt bold sans-serif;
+    margin: 2px;
+}
+
+.sc-entity-info-neighbor-filter {
+    display: inline-block;
+    text-align: right;
+}
+
+.sc-entity-info-neighbor-filter button {
+    text-decoration: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-style: italic;
+    font-family: serif;
+}
+
+.sc-active {
+    color: white;
+}
+
+.sc-inactive {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sc-entity-info-neighbor-list {
+    display: flex;
+    flex-direction: column;
+    width: 24em;
+    justify-content: center;
+}
+
+.sc-neighbor {
+    display: flex;
+    flex-direction: row;
+    max-height: 36pt;
+    cursor: pointer;
+    padding-bottom: 2pt;
+    padding-top: 2pt;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.sc-neighbor-picture {
+    flex: 0 0 36pt;
+    object-fit: contain;
+    font-size: 24pt;
+    text-align: left;
+    color: white;
+}
+
+.sc-neighbor-desc {
+    flex-grow: 1;
+    color: white;
+    font-family: serif;
+    align-self: center;
+    user-select: none;
+}
+

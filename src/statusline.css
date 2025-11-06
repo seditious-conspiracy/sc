@@ -1,0 +1,147 @@
+.sc-statusline-and-commandline {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100vw;
+    font: 11pt monospace;
+    z-index: 1000;
+}
+
+.sc-statusline {
+    display: flex;
+    flex-direction: row;
+}
+
+.sc-statusline span {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.sc-statusline-mode {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.sc-statusline-left {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.sc-statusline-mid-left {
+    flex: 1 1 auto;
+    text-align: left;
+}
+
+.sc-statusline-mid-right {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
+.sc-statusline-right {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.sc-statusline-mode.sc-statusline-NORMAL {
+    color: #335261;
+    background-color: #b3deef;
+}
+
+.sc-statusline-left.sc-statusline-NORMAL {
+    color: #282828;
+    background-color: #73cef4;
+}
+
+.sc-statusline-mid-left.sc-statusline-NORMAL {
+    color: #b3deef;
+    background-color: #44778d;
+}
+
+.sc-statusline-mid-right.sc-statusline-NORMAL {
+    color: #b3deef;
+    background-color: #44778d;
+}
+
+.sc-statusline-right.sc-statusline-NORMAL {
+    color: #282828;
+    background-color: #73cef4;
+}
+
+.sc-statusline-mode.sc-statusline-SELECT {
+    color: #464632;
+    background-color: #c9d05c;
+}
+
+.sc-statusline-left.sc-statusline-SELECT {
+    color: #282828;
+    background-color: #9faa00;
+}
+
+.sc-statusline-mid-left.sc-statusline-SELECT {
+    color: #c9d05c;
+    background-color: #6a6b3f;
+}
+
+.sc-statusline-mid-right.sc-statusline-SELECT {
+    color: #c9d05c;
+    background-color: #6a6b3f;
+}
+
+.sc-statusline-right.sc-statusline-SELECT {
+    color: #282828;
+    background-color: #9faa00;
+}
+
+.sc-statusline-mode.sc-statusline-INSERT {
+    color: #715b2f;
+    background-color: #d3b987;
+}
+
+.sc-statusline-left.sc-statusline-INSERT {
+    color: #282828;
+    background-color: #ffc24b;
+}
+
+.sc-statusline-mid-left.sc-statusline-INSERT {
+    color: #d3b987;
+    background-color: #715b2f;
+}
+
+.sc-statusline-mid-right.sc-statusline-INSERT {
+    color: #d3b987;
+    background-color: #715b2f;
+}
+
+.sc-statusline-right.sc-statusline-INSERT {
+    color: #282828;
+    background-color: #ffc24b;
+}
+
+.sc-statusline-mode.sc-statusline-EXTRACT {
+    color: #79313c;
+    background-color: #f43753;
+}
+
+.sc-statusline-left.sc-statusline-EXTRACT {
+    color: #282828;
+    background-color: #c5152f;
+}
+
+.sc-statusline-mid-left.sc-statusline-EXTRACT {
+    color: #f43753;
+    background-color: #79313c;
+}
+
+.sc-statusline-mid-right.sc-statusline-EXTRACT {
+    color: #f43753;
+    background-color: #79313c;
+}
+
+.sc-statusline-right.sc-statusline-EXTRACT {
+    color: #282828;
+    background-color: #c5152f;
+}
+

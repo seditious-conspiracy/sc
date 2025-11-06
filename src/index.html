@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="sc0.css" rel="stylesheet">
+        <script src="sc0.js" defer></script>
+        <title>sc</title>
+    </head>
+    <body>
+        <dialog class="sc-help"></dialog>
+        <div class="app-container">
+            <div class="sc-entity-info-panel" id="sc-info-panel" style="display: none;">
+                <input class="sc-entity-info-name-input" placeholder="(name)"></input>
+                <div class="sc-entity-info-picture-container">
+                    <img class="sc-entity-info-picture"></img>
+                </div>
+                <div class="sc-entity-info-prop-list"></div>
+                <div class="sc-entity-info-neighbor-filter">
+                    <button id="filter-in">in</button>
+                    <button id="filter-out">out</button>
+                </div>
+                <div class="sc-entity-info-neighbor-list"></div>
+            </div>
+            <div class="sc-statusline-and-commandline">
+                <div class="sc-statusline">
+                    <span class="sc-statusline-mode sc-statusline-NORMAL">NORMAL</span><span class="sc-statusline-left sc-statusline-NORMAL">left</span><span class="sc-statusline-mid-left sc-statusline-NORMAL">midleft</span><span class="sc-statusline-mid-right sc-statusline-NORMAL">midright</span><span class="sc-statusline-right sc-statusline-normal"></span>
+                </div>
+                <input class="sc-commandline" placeholder="placeholder"></input>
+            </div>
+            <div id="graph-container"></div>
+        </div>
+    </body>
+</html>
+

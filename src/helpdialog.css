@@ -1,0 +1,19 @@
+.sc-help {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.sc-help .sc-statusline-mid-left {
+    display: block !important;
+    color: white;
+    text-align: left;
+}
+
+.sc-help .sc-help-command {
+    font: 11pt monospace;
+}
+
