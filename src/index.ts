@@ -1,4 +1,4 @@
-import { CanvasEvent, ContainerEvent, Graph, GraphEvent, NodeEvent, type BaseLayoutOptions, type GraphData, type Node, type RuntimeContext, iconfont, type LayoutOptions } from "@antv/g6";
+import { CanvasEvent, ContainerEvent, Graph, GraphEvent, NodeEvent, type BaseLayoutOptions, type GraphData, type Node, type RuntimeContext, iconfont, type LayoutOptions, type NodeData } from "@antv/g6";
 import "./index.css";
 import "./statusline.css";
 import { InfoPanel } from "./info_panel.js";
@@ -10,7 +10,7 @@ import "./imagenode.js";
 import "./extracttool.js";
 import "./commands.js";
 import "./helpdialog.css";
-import { makeImageNodeData, NodeProperty } from "./entities.js";
+import { makeImageNodeData, makeTextNodeData, makeWWWNodeData, NodeProperty, type EntityNodeData } from "./entities.js";
 import { CommandManager } from "./commands.js";
 import type { EdgeDatum } from "@antv/layout/lib/d3-force/types.js";
 import { layouts } from "./layouts.js";
@@ -44,12 +44,13 @@ export class ScApplication {
             node: {
                 style: {
                     label: true,
-                    labelText: (n) => n.data?.name as string || "",
+                    labelText: (n) => n.data?.name as string || n.data?.url as string || n.data?.notes as string || "",
                     iconText: (n) => (n.data?.icon || "?") as string,
                     iconFill: (n) => (n.data?.color || "#ffffff") as string,
                     iconStroke: (n) => (n.data?.color || "#ffffff") as string,
                     labelFill: (n) => (n.data?.color || "#ffffff") as string,
                     labelFontSize: 48,
+                    labelLineHeight: 48,
                     fillOpacity: 0,
                     margin: 2,
                 },
@@ -163,8 +164,8 @@ export class ScApplication {
         this.graph.on(CanvasEvent.CLICK, (ev: any) => { 
             this.panel.focusNode()
             if (this.mode === INSERT) {
-                const [ x, y ] = this.graph.getCanvasByViewport([ev.clientX, ev.clientY]);
-                this.graph.addNodeData([{
+                const [x, y] = this.graph.getCanvasByViewport([ev.clientX, ev.clientY]);
+                const n: EntityNodeData = {
                     id: crypto.randomUUID(),
                     type: "rect",
                     style: {
@@ -182,7 +183,8 @@ export class ScApplication {
                         icon: "👤",
                         notes: "",
                     }
-                }]);
+                }
+                this.graph.addNodeData([n]);
             }
         });
 
@@ -238,8 +240,9 @@ export class ScApplication {
         getDatabase().saveAsset(a);
         const id = crypto.randomUUID();
        
-        this.graph.addNodeData([makeImageNodeData({
+        return makeImageNodeData({
             id: id,
+            type: "sc-image",
             style: {
                 size: [bitmap.width, bitmap.height],
                 source_id: hashString,
@@ -250,18 +253,28 @@ export class ScApplication {
                 name: f.name,
                 mimetype: new NodeProperty(f.type)
             }
-        })]);
-        return id;
-    }
-    
-    processTransfer(transfer: DataTransfer) {
-        Promise.all([...transfer.items].filter(i => i.type.match(/^image/)).map(i => {
-            const f = i.getAsFile()!;
-            return this.processFile(f);
-        })).then(() => {
-            getDatabase().saveGraphData(this.graph.getData());
-            this.graph.render();
         });
+    }
+ 
+    async processTransfer(transfer: DataTransfer) {
+        let data: NodeData[] = [];
+        for (const i of transfer.items) {
+            if (i.type.match(/^image/)) {
+                data.push(await this.processFile(i.getAsFile()!));
+            }
+
+            if (i.type === "text/uri-list") {
+                data.push(await makeWWWNodeData(i));
+                break;
+            } else if (i.type === "text/plain") {
+                data.push(await makeTextNodeData(i));
+                break;
+            }
+        }
+
+        this.graph.addNodeData(data);
+        getDatabase().saveGraphData(this.graph.getData());
+        this.graph.render();    
     }
 
     async setLayout(layout: LayoutOptions) {
