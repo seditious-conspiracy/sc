@@ -128,9 +128,15 @@ export class InfoPanel {
         div.appendChild(desc);
 
         div.onclick = async () => {
+            this.focusNode();
             await getScApp().graph.focusElement(node.id);
+            getScApp().graph.setElementState(node.id, ["selected"]);
             this.focusNode(node);
-            getScApp().graph.zoomTo(0.8);
+            const [cx, cy] = getScApp().graph.getCanvas().getSize();
+            const [bx, by] = [cx * 0.8, cy * 0.8];
+            const [nx, ny] = (node.style?.size as [number, number]) || [1, 1];
+            const zoom = Math.min(bx / nx, by / ny, 2.0);
+            getScApp().graph.zoomTo(zoom);
         };
         
         return div;
@@ -160,8 +166,9 @@ export class InfoPanel {
         this.updateProperties();
         [...this.propList.children].forEach(c => this.propList.removeChild(c));
         this.makeNeighborList(node);
-        
+         
         if (node) {
+            // getScApp().graph.setElementState(node.id, ["selected"]);
             const { name, ...props } = node.data as any;
             this.container.style = "display: flex;";
             this.nameInput.value = (name as string) || "";
